@@ -1,4 +1,10 @@
+import { useSelector } from "react-redux"
+import { StateType } from "../types/state.type"
+
 function MusicDisplay() {
+    const songs = useSelector((state: StateType) => state.songs.data)
+    console.log({ songs })
+
     return (
         <div
             style={{

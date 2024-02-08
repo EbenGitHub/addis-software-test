@@ -1,46 +1,32 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
-type Song = {
-    id: string,
-    title: string,
-    artist: string,
-    album: string,
-    genre: string,
-}
-
-const songSlice = createSlice({
+export const songSlice = createSlice({
     name: 'songs',
-    initialState: [],
+    initialState: {
+        data: [],
+        isLoading: false,
+        isSuccess: false,
+        isError: false
+    },
     reducers: {
-        createSong(state: Song[], action) {
-            return state.concat({
-                id: action.payload.id,
-                title: action.payload.title,
-                artist: action.payload.artist,
-                album: action.payload.album,
-                genre: action.payload.genre,
-            })
+        getSongsFetch: (state) => {
+            state.isLoading = true
+            state.isSuccess = false
+            state.isError = false
         },
-        updateSong(state, action) {
-            return state.map(n => {
-                if (n.id === action.payload.id) {
-                    return {
-                        ...n,
-                        title: action.payload.title,
-                        artist: action.payload.artist,
-                        album: action.payload.album,
-                        genre: action.payload.genre,
-                    }
-                }
-                return n;
-            })
+        getSongsSuccess: (state, action) => {
+            state.isLoading = false
+            state.isSuccess = true
+            state.isError = false
+            state.data = action.payload
         },
-        deleteSong(state, action) {
-            return state.filter(n => n.id !== action.payload.id)
+        getSongsFailure: (state) => {
+            state.isLoading = false
+            state.isError = true
+            state.isSuccess = false
         }
     }
 })
 
-export const { createSong, deleteSong, updateSong } = songSlice.actions
-
-export default notificationSlice.reducer
+export const { getSongsFetch, getSongsSuccess, getSongsFailure } = songSlice.actions
+export default songSlice.reducer

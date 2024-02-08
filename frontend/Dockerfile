@@ -8,6 +8,7 @@ RUN yarn install --frozen-lockfile --production=false
 
 COPY . .
 
+ENV VITE_BACKEND_URL='/api/'
 RUN yarn build
 
 
@@ -17,8 +18,7 @@ WORKDIR /usr/src/app
 
 COPY --from=builder /usr/src/app/package.json /usr/src/app/yarn.lock ./
 COPY --from=builder /usr/src/app/dist ./dist
-COPY --from=builder /usr/src/app/build ./dist/build
 
 RUN yarn install --frozen-lockfile --production=true
 
-CMD ["yarn", "start:prod"]
+CMD ["yarn", "preview"]

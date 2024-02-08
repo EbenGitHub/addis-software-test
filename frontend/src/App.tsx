@@ -1,11 +1,15 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import Navigation from './components/Navigation'
 import MusicDisplay from './components/MusicDisplay'
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { getSongsFetch } from './reducers/songsReducer'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getSongsFetch())
+  }, [dispatch])
 
   return (
     <main>
