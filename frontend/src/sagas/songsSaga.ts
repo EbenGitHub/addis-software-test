@@ -8,7 +8,6 @@ function* workGetSongsFetch(): Generator<CallEffect<Response> | PutEffect<{ payl
     const songs = yield call(api.fetchSongs)
     const formatedSongs = yield songs.json()
     yield put(getSongsSuccess(formatedSongs))
-
 }
 
 function* songSaga() {

@@ -8,4 +8,16 @@ export type SongsState = {
 
 export type StateType = {
     songs: SongsState
+    stats: {
+        loading: boolean;
+        error: string | null;
+        data: {
+            albumsByArtist: object[],
+            generalStats: object,
+            songsAndAlbumsByArtist: object[],
+            songsByAlbum: object[],
+            songsByArtist: object[],
+            songsByGenre: object[]
+        }
+    }
 }

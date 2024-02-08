@@ -3,7 +3,8 @@ import { StateType } from "../types/state.type"
 
 function MusicDisplay() {
     const songs = useSelector((state: StateType) => state.songs.data)
-    console.log({ songs })
+    const stats = useSelector((state: StateType) => state.stats.data)
+    console.log({ songs, stats })
 
     return (
         <div
