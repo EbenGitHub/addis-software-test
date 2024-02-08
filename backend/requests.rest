@@ -1,0 +1,48 @@
+### CREATE SONG
+POST http://localhost:3000/api/songs/
+Content-Type: application/json
+
+{
+  "title": "Bohemian Rhapsody",
+  "artist": "Queen",
+  "album": "A Night at the Opera asdf",
+  "genre": "Rocks rock"
+}
+
+
+
+
+### GET ALL SONGS
+GET http://localhost:3000/api/songs/
+
+
+
+
+### GET SONG BY ID
+GET http://localhost:3000/api/songs/65c4b1aa29a1ae09d9408ef3
+
+
+
+
+### UPDATE SONG
+PUT http://localhost:3000/api/songs/65c4b1aa29a1ae09d9408ef3
+Content-Type: application/json
+
+{
+  "title": "Bohemian Rhapsody",
+  "artist": "Queen",
+  "album": "A Night at the Opera",
+  "genre": "We Rock"
+}
+
+
+
+
+### DELETE SONG
+DELETE http://localhost:3000/api/songs/65c4b1aa29a1ae09d9408ef3
+
+
+
+
+### GET STATS
+GET http://localhost:3000/api/stats/
