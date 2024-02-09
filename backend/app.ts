@@ -18,7 +18,7 @@ mongoose.connect(`${config.DB_URL}?authSource=admin`, {
     }
 })
     .then(() => {
-        logger.info('Application connected to db')
+        logger.info('Application connected to db: ' + config.DB_URL)
     })
 
 
