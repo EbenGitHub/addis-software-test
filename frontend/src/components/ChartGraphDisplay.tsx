@@ -22,7 +22,7 @@ Chartjs.register(
 
 function ChartGraphDisplay() {
     const stats = useSelector((state: StateType) => state.stats.data)
-
+    console.log({ stats })
     return (
         <div
             style={{
@@ -44,7 +44,7 @@ function ChartGraphDisplay() {
                 <BarChart data={stats} />
             </div>
             <div style={{ gridColumn: '3', gridRow: '1' }}>
-                <ListDisplay data={stats.songsAndAlbumsByArtist} />
+                <ListDisplay data={stats} />
             </div>
         </div>
 

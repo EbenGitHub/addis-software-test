@@ -19,18 +19,34 @@ export type Stat = {
     albumsByArtist: object[],
     generalStats: GeneralStatsType,
     songsAndAlbumsByArtist: SongsAndAlbum[],
-    songsByAlbum: SubStatData[],
-    songsByArtist: SubStatData[],
-    songsByGenre: SubStatData[]
+    songsByAlbum: SongsAndAlbum[],
+    songsByArtist: SongsByArtist[],
+    songsByGenre: SongsByGenre[]
 }
 
 type SongsAndAlbum = {
     artist: string,
-    albums: string[]
+    albums: string[],
+    songsCount: number,
+    albumsCount: number
 }
 
 type SubStatData = {
     count: number
+}
+
+export type SongsByArtist = SubStatData & {
+    artist: string
+}
+
+
+export type SongsByAlbum = SubStatData & {
+    album: string
+}
+
+
+export type SongsByGenre = SubStatData & {
+    genre: string
 }
 
 export type GeneralStatsType = {

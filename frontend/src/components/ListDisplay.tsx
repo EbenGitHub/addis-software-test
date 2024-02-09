@@ -1,31 +1,51 @@
-import { SongsAndAlbum } from "../types/state.type"
+import { SongsByArtist } from "../types/song.type"
+import { SongsByAlbum, SongsByGenre, Stat } from "../types/state.type"
 
 type ListPros = {
-    data: SongsAndAlbum[]
+    data: Stat
 }
 function ListDisplay({ data }: ListPros) {
-    if (!data || !(data).length) return <></>
+    if (!data || !(data).songsByArtist) return <></>
+
+    const { songsByArtist, songsByAlbum, songsByGenre } = data
 
     return (
-        <ul>
-            <h2
-                style={{ color: 'orangered' }}
-            >Songs and album by artist</h2>
-            {
-                data.map(data => {
-                    return <li key={`${data.artist}-${data.albums.join()}`}>
-                        <h3 style={{ color: "green" }}>{data?.artist}</h3>
-                        <ol>
+        <table>
+            <thead>
+                <tr>
+                    <th>Song By Artist</th>
+                    <th>Song By Album</th>
+                    <th>Song By Genre</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <ul>
+                            {songsByArtist.map((item: SongsByArtist) => (
+                                <li key={item.artist}>{item.artist} - {item.count}</li>
+                            ))}
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
                             {
-                                data?.albums?.map(album => {
-                                    return <li style={{ color: 'cyan' }} key={`${data.artist}-${album}-`}>{album}</li>
-                                })
-                            }
-                        </ol>
-                    </li>
-                })
-            }
-        </ul>
+                                // @ts-ignore
+                                songsByAlbum.map((item: SongsByAlbum) => (
+                                    <li key={item.album}>{item.album} - {item.count}</li>
+                                ))}
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            {songsByGenre.map((item: SongsByGenre) => (
+                                <li key={item.genre}>{item.genre} - {item.count}</li>
+                            ))}
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     )
 }
 

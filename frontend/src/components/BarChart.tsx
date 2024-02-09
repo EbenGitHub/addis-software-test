@@ -26,12 +26,19 @@ function BarChart({ data: dataStat }: BarProps) {
 
     if (!barDataset || !Object.keys(barDataset).length) return <></>
     const data = {
-        labels: ['songsByAlbum', 'songsByArtist', 'songsByGenre'],
+        labels: [...songsAndAlbumsByArtist.map((item) => item['artist'])],
         datasets: [
             {
-                label: 'count',
-                data: [barDataset['songsByAlbum']?.[0]?.['count'], barDataset['songsByArtist']?.[0]?.['count'], barDataset['songsByGenre']?.[0]?.['count']],
+                label: 'Album Count',
+                data: [...songsAndAlbumsByArtist.map((item) => item['albumsCount'])],
                 backgroundColor: 'blue ',
+                borderColor: 'black',
+                borderWidth: 1
+            },
+            {
+                label: 'Song Count',
+                data: [...songsAndAlbumsByArtist.map((item) => item['songsCount'])],
+                backgroundColor: 'green ',
                 borderColor: 'black',
                 borderWidth: 1
             },
