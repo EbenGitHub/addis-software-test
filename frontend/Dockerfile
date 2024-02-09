@@ -21,4 +21,4 @@ COPY --from=builder /usr/src/app/dist ./dist
 
 RUN yarn install --frozen-lockfile --production=true
 
-CMD ["yarn", "preview"]
+CMD ["yarn", "preview", "--port", "5174"]

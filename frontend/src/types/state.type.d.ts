@@ -11,13 +11,31 @@ export type StateType = {
     stats: {
         loading: boolean;
         error: string | null;
-        data: {
-            albumsByArtist: object[],
-            generalStats: object,
-            songsAndAlbumsByArtist: object[],
-            songsByAlbum: object[],
-            songsByArtist: object[],
-            songsByGenre: object[]
-        }
+        data: Stat
     }
+}
+
+export type Stat = {
+    albumsByArtist: object[],
+    generalStats: GeneralStatsType,
+    songsAndAlbumsByArtist: SongsAndAlbum[],
+    songsByAlbum: SubStatData[],
+    songsByArtist: SubStatData[],
+    songsByGenre: SubStatData[]
+}
+
+type SongsAndAlbum = {
+    artist: string,
+    albums: string[]
+}
+
+type SubStatData = {
+    count: number
+}
+
+export type GeneralStatsType = {
+    totalAlbums: number,
+    totalArtists: number,
+    totalGenres: number,
+    totalSongs: number
 }

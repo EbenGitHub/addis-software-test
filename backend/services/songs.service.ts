@@ -7,7 +7,6 @@ class SongService {
 
     async findAll(genre?: unknown) {
         const filter = {}
-        console.log(genre)
         if (isString(genre)) {
             Object.assign(filter, { genre })
         }
