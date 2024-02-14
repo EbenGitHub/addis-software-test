@@ -8,6 +8,7 @@ import {
 } from 'chart.js'
 import { Bar } from 'react-chartjs-2'
 import { Stat } from '../types/state.type'
+import { css } from '@emotion/css'
 
 Chartjs.register(
     BarElement,
@@ -52,9 +53,11 @@ function BarChart({ data: dataStat }: BarProps) {
 
     return (
         <Bar
-            style={{
-                padding: '20px'
-            }}
+            className={
+                css`
+                padding: 20px
+                `
+            }
             data={data}
             options={options}
         />

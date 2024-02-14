@@ -19,7 +19,7 @@ export type Stat = {
     albumsByArtist: object[],
     generalStats: GeneralStatsType,
     songsAndAlbumsByArtist: SongsAndAlbum[],
-    songsByAlbum: SongsAndAlbum[],
+    songsByAlbum: SongsByAlbum[],
     songsByArtist: SongsByArtist[],
     songsByGenre: SongsByGenre[]
 }

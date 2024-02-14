@@ -8,10 +8,11 @@ class Api {
         return axios.get(`${baseUrl}/api/songs/`)
     }
 
-    filterSongs(filter: string) {
+    filterSongs(filter: string, filterBy: string) {
         return axios.get(`${baseUrl}/api/songs/`, {
             params: {
-                genre: filter
+                filter,
+                filterBy
             }
         })
     }

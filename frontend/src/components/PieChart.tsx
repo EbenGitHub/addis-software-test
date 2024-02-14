@@ -41,9 +41,11 @@ function PieChart({ data: dataStat }: PieChartProps) {
 
     return (
         <Pie
-            style={{
-                padding: '20px'
-            }}
+            className={
+                `
+                padding: 20px
+                `
+            }
             data={data}
             options={options}
         />

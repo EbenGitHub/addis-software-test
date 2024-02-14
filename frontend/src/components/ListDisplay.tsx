@@ -1,5 +1,6 @@
-import { SongsByArtist } from "../types/song.type"
 import { SongsByAlbum, SongsByGenre, Stat } from "../types/state.type"
+import { css } from '@emotion/css'
+import ListDisplaySection from "./ListDisplaySection"
 
 type ListPros = {
     data: Stat
@@ -10,7 +11,16 @@ function ListDisplay({ data }: ListPros) {
     const { songsByArtist, songsByAlbum, songsByGenre } = data
 
     return (
-        <table>
+        <table
+            className={css`
+      background-color: hotpink;
+      border: 1px solid #333;
+      border-radius: 4px;
+      padding: 8px;
+      border-collapse: separate;
+        border-spacing: 20px;
+    `}
+        >
             <thead>
                 <tr>
                     <th>Song By Artist</th>
@@ -20,29 +30,9 @@ function ListDisplay({ data }: ListPros) {
             </thead>
             <tbody>
                 <tr>
-                    <td>
-                        <ul>
-                            {songsByArtist.map((item: SongsByArtist) => (
-                                <li key={item.artist}>{item.artist} - {item.count}</li>
-                            ))}
-                        </ul>
-                    </td>
-                    <td>
-                        <ul>
-                            {
-                                // @ts-ignore
-                                songsByAlbum.map((item: SongsByAlbum) => (
-                                    <li key={item.album}>{item.album} - {item.count}</li>
-                                ))}
-                        </ul>
-                    </td>
-                    <td>
-                        <ul>
-                            {songsByGenre.map((item: SongsByGenre) => (
-                                <li key={item.genre}>{item.genre} - {item.count}</li>
-                            ))}
-                        </ul>
-                    </td>
+                    <ListDisplaySection data={songsByArtist} />
+                    <ListDisplaySection data={songsByAlbum} />
+                    <ListDisplaySection data={songsByGenre} />
                 </tr>
             </tbody>
         </table>

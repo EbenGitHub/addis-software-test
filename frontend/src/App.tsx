@@ -8,14 +8,20 @@ import ChartGraphDisplay from './components/ChartGraphDisplay'
 import Modal from './components/Modal'
 import { Song } from './types/song.type'
 import Api from './api/api.service'
+import DeleteModal from './components/DeleteModal'
+import { css } from '@emotion/css'
+import ErrorMessage from './components/ErrorMessage'
 
 function App() {
   const dispatch = useDispatch()
 
   const [page, setPage] = useState<'graph' | 'music'>('graph')
   const [openModal, setOpenModal] = useState<boolean>(false)
+  const [openDeleteModal, setOpenDeleteModal] = useState<boolean>(false)
+  const [deleteId, setDeleteId] = useState<string>('')
   const [modalMode, setModalMode] = useState<'edit' | 'create'>('create')
   const [filter, setFilter] = useState<string>('')
+  const [filterBy, setFilterBy] = useState<'genre' | 'artist' | 'album' | 'title'>('genre')
 
   const api = new Api()
 
@@ -27,6 +33,7 @@ function App() {
     title: ''
   }
   const [modalContent, setModalContent] = useState<Song>(structuredClone(newSongTemplate))
+  const [errorMessages, setErrorMessages] = useState<string>()
 
   useEffect(() => {
     dispatch(getSongsFetch())
@@ -34,21 +41,32 @@ function App() {
   }, [dispatch])
 
   useEffect(() => {
-    api.filterSongs(filter)
+    api.filterSongs(filter, filterBy)
       .then(res => {
         dispatch(filterSongs(res.data))
       })
-  })
+  }, [filter, filterBy])
 
   function clearModalContent() {
     setModalContent(structuredClone(newSongTemplate))
   }
 
+  function clearDeleteModal() {
+    setDeleteId('')
+  }
+
+  function deleteSong(id: string) {
+    setDeleteId(id)
+    setOpenDeleteModal(true)
+  }
+
   return (
     <main style={{ overflow: 'hidden', height: '100vh' }}>
-      {openModal && <Modal modalMode={modalMode} setOpenModal={setOpenModal} content={modalContent} changeContent={setModalContent} clear={clearModalContent} />}
-      <Navigation changePage={setPage} currentPage={page} setFilter={setFilter} />
-      {page === 'music' ? <MusicDisplay openModal={setOpenModal} changeMode={setModalMode} changeModalContent={setModalContent} clear={clearModalContent} /> :
+      {openModal && <Modal modalMode={modalMode} setOpenModal={setOpenModal} content={modalContent} changeContent={setModalContent} clear={clearModalContent} setErrorMessages={setErrorMessages} />}
+      {openDeleteModal && <DeleteModal id={deleteId} clear={clearDeleteModal} setOpenModal={setOpenDeleteModal} />}
+      <Navigation changePage={setPage} currentPage={page} setFilter={setFilter} setFilterBy={setFilterBy} />
+      <ErrorMessage errorMessages={errorMessages} setErrorMessages={setErrorMessages} />
+      {page === 'music' ? <MusicDisplay openModal={setOpenModal} changeMode={setModalMode} changeModalContent={setModalContent} clear={clearModalContent} deleteSong={deleteSong} /> :
         <ChartGraphDisplay />}
     </main>
   )
