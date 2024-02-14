@@ -7,7 +7,7 @@ const songRouter = Router()
 const songService = new SongService()
 
 songRouter.get('/', async (request, response) => {
-    const songs = await songService.findAll(request.query.genre)
+    const songs = await songService.findAll(request.query.filter, request.query.filterBy)
     response.json(songs)
 })
 

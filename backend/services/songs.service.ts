@@ -5,12 +5,20 @@ import isString from '../utils/isString'
 
 class SongService {
 
-    async findAll(genre?: unknown) {
-        const filter = {}
-        if (isString(genre)) {
-            Object.assign(filter, { genre })
+    async findAll(filter?: unknown, filterBy?: unknown) {
+        const queryFilter = {}
+        if (isString(filter) && isString(filterBy)) {
+            if (filterBy === 'artist') {
+                Object.assign(queryFilter, { artist: { $regex: filter, $options: 'i' } })
+            } else if (filterBy === 'album') {
+                Object.assign(queryFilter, { album: { $regex: filter, $options: 'i' } })
+            } else if (filterBy === 'genre') {
+                Object.assign(queryFilter, { genre: { $regex: filter, $options: 'i' } })
+            } else if (filterBy === 'title') {
+                Object.assign(queryFilter, { title: { $regex: filter, $options: 'i' } })
+            }
         }
-        return await Song.find(filter)
+        return await Song.find(queryFilter)
     }
 
     async findOne(id: string) {
