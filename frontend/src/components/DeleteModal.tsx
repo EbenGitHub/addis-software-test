@@ -63,15 +63,15 @@ function DeleteModal({ id, clear, setOpenModal }: ModalProp) {
                         className={
                             css`
                             background-color: white;
-                            color: green;
+                            color: red;
                             margin-top: 10px;
                             &:hover {
-                                background-color: green;
+                                background-color: red;
                                 color: white;
                             }
                             `
                         }
-                    >save</button>
+                    >delete</button>
                     <button onClick={(e) => {
                         e.stopPropagation()
                         e.preventDefault()
@@ -81,10 +81,10 @@ function DeleteModal({ id, clear, setOpenModal }: ModalProp) {
                         className={
                             css`
                             background-color: white;
-                            color: red;
+                            color: green;
                             margin-top: 10px;
                             &:hover {
-                                background-color: red;
+                                background-color: green;
                                 color: white;
                             }
                             `
