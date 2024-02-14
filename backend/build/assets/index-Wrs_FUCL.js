@@ -287,18 +287,18 @@ object-assign
                     margin: 10px;
                     `,children:[P.jsx("button",{onClick:async s=>{s.stopPropagation(),s.preventDefault(),i.deleteSongs(e).then(()=>{t(),r(KC({id:e}))}).catch(o=>{console.log(o)}),n(!1)},className:I`
                             background-color: white;
-                            color: green;
-                            margin-top: 10px;
-                            &:hover {
-                                background-color: green;
-                                color: white;
-                            }
-                            `,children:"save"}),P.jsx("button",{onClick:s=>{s.stopPropagation(),s.preventDefault(),t(),n(!1)},className:I`
-                            background-color: white;
                             color: red;
                             margin-top: 10px;
                             &:hover {
                                 background-color: red;
+                                color: white;
+                            }
+                            `,children:"delete"}),P.jsx("button",{onClick:s=>{s.stopPropagation(),s.preventDefault(),t(),n(!1)},className:I`
+                            background-color: white;
+                            color: green;
+                            margin-top: 10px;
+                            &:hover {
+                                background-color: green;
                                 color: white;
                             }
                             `,children:"cancel"})]})})]})}function _O({errorMessages:e,setErrorMessages:t}){return z.useEffect(()=>{e&&setTimeout(()=>{t(void 0)},5e3)},[e]),P.jsx("div",{className:I`
