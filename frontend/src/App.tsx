@@ -9,7 +9,6 @@ import Modal from './components/Modal'
 import { Song } from './types/song.type'
 import Api from './api/api.service'
 import DeleteModal from './components/DeleteModal'
-import { css } from '@emotion/css'
 import ErrorMessage from './components/ErrorMessage'
 
 function App() {

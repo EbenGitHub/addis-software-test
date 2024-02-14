@@ -71,12 +71,3 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
-
-dialog::backdrop {
-  background: repeating-linear-gradient(30deg,
-      rgba(24, 194, 236, 0.2),
-      rgba(24, 194, 236, 0.2) 1px,
-      rgba(24, 194, 236, 0.3) 1px,
-      rgba(24, 194, 236, 0.3) 20px);
-  backdrop-filter: blur(1px)
-}

@@ -1,7 +1,6 @@
 import { useDispatch } from "react-redux"
 import Api from "../api/api.service"
-import { Song } from "../types/song.type"
-import { addSong, removeSong, updateSong } from "../reducers/songsReducer"
+import { removeSong } from "../reducers/songsReducer"
 import { css } from "@emotion/css"
 
 type ModalProp = {

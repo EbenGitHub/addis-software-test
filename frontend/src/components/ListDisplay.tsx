@@ -1,4 +1,4 @@
-import { SongsByAlbum, SongsByGenre, Stat } from "../types/state.type"
+import { Stat } from "../types/state.type"
 import { css } from '@emotion/css'
 import ListDisplaySection from "./ListDisplaySection"
 
