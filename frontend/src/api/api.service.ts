@@ -1,7 +1,7 @@
 import { Song } from "../types/song.type"
 import axios from 'axios'
 
-const baseUrl = ""
+const baseUrl = import.meta.env.VITE_API_URL
 class Api {
 
     fetchSongs() {
