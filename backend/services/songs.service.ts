@@ -1,7 +1,7 @@
 import { createSongDto } from '../dto/create-song.dto'
 import { updateSongDto } from '../dto/update-song.dto'
 import Song from '../models/song.model'
-import isString from '../utils/isString'
+import isString from '../utils/isString.util'
 
 class SongService {
 
@@ -48,6 +48,10 @@ class SongService {
     }
 
     async update(id: string, data: updateSongDto) {
+        const song = await Song.findById(id)
+        if (!song) {
+            throw new Error("song not found")
+        }
         return await Song.findByIdAndUpdate(id, { ...data, updatedAt: new Date() })
     }
 

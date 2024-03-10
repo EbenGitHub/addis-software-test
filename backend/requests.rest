@@ -1,5 +1,5 @@
 ### CREATE SONG
-POST http://localhost:3001/api/songs/
+POST http://localhost:3000/api/songs/
 Content-Type: application/json
 
 {
@@ -13,20 +13,20 @@ Content-Type: application/json
 
 
 ### GET ALL SONGS
-GET http://localhost:3001/api/songs/
+GET http://localhost:3000/api/songs/
             ?genre=Rocks rock
 
 
 
 
 ### GET SONG BY ID
-GET http://localhost:3001/api/songs/65c4b1aa29a1ae09d9408ef3
+GET http://localhost:3000/api/songs/65c4b1aa29a1ae09d9408ef3
 
 
 
 
 ### UPDATE SONG
-PUT http://localhost:3001/api/songs/65c4b1aa29a1ae09d9408ef3
+PUT http://localhost:3000/api/songs/65c4b1aa29a1ae09d9408ef3
 Content-Type: application/json
 
 {
@@ -40,10 +40,10 @@ Content-Type: application/json
 
 
 ### DELETE SONG
-DELETE http://localhost:3001/api/songs/65c4b1aa29a1ae09d9408ef3
+DELETE http://localhost:3000/api/songs/65c4b1aa29a1ae09d9408ef3
 
 
 
 
 ### GET STATS
-GET http://localhost:3001/api/stats/
+GET http://localhost:3000/api/stats/

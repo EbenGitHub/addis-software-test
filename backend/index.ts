@@ -1,8 +1,9 @@
-import config from './utils/config'
 import app from './app'
 import logger from './logger.winston'
+import ConfigService from './utils/config.util'
 
-app.listen(config.PORT, () => {
-    logger.info(`Server running on port ${config.PORT}`)
-    logger.info(`Environment: ${config.ENV}`)
+const configService = new ConfigService()
+app.listen(configService.get<number>('PORT', 3000), () => {
+    logger.info(`Server running on port ${configService.get<number>('PORT', 3000)}`)
+    logger.info(`Environment: ${configService.get<string>('NODE_ENV', 'development')}`)
 })
