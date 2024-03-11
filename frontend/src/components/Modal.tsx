@@ -1,7 +1,6 @@
 import { useDispatch } from "react-redux"
-import Api from "../api/api.service"
 import { Song } from "../types/song.type"
-import { addSong, updateSong } from "../reducers/songsReducer"
+import { addSongFetch, updateSongFetch } from "../reducers/songsReducer"
 import { css } from "@emotion/css"
 
 type ModalProp = {
@@ -15,7 +14,6 @@ type ModalProp = {
 function Modal({ modalMode, setOpenModal, content, changeContent, clear, setErrorMessages }: ModalProp) {
 
     const dispatch = useDispatch()
-    const api = new Api()
 
     return (
         <dialog open={true}
@@ -112,26 +110,16 @@ function Modal({ modalMode, setOpenModal, content, changeContent, clear, setErro
                     <button onClick={async (e) => {
                         e.stopPropagation()
                         e.preventDefault()
-                        modalMode === 'create' && api.createSongs({
-                            title: content.title,
-                            album: content.album,
-                            artist: content.artist,
-                            genre: content.genre
-                        }).then(res => {
-                            dispatch(addSong(res.data))
-                            setOpenModal(false)
-                        }).catch(err => {
-                            console.error(err)
-                            setErrorMessages(err?.response?.data?.error)
-                        })
-                        modalMode === 'edit' && api.updateSongs(content)
-                            .then(_res => {
-                                dispatch(updateSong(content))
-                                setOpenModal(false)
-                            }).catch(err => {
-                                console.error(err)
-                                setErrorMessages(err?.response?.data?.error)
-                            })
+
+                        const updateContent = { ...content }
+                        const { id, ...createContent } = { ...content }
+
+                        modalMode === 'create' &&
+                            dispatch(addSongFetch(createContent))
+
+                        modalMode === 'edit' &&
+                            dispatch(updateSongFetch(updateContent))
+                        setOpenModal(false)
                     }}
                         className={
                             css`

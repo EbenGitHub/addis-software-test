@@ -1,6 +1,5 @@
 import { useDispatch } from "react-redux"
-import Api from "../api/api.service"
-import { removeSong } from "../reducers/songsReducer"
+import { removeSongFetch } from "../reducers/songsReducer"
 import { css } from "@emotion/css"
 
 type ModalProp = {
@@ -11,7 +10,6 @@ type ModalProp = {
 function DeleteModal({ id, clear, setOpenModal }: ModalProp) {
 
     const dispatch = useDispatch()
-    const api = new Api()
 
     return (
         <dialog open={true}
@@ -51,13 +49,8 @@ function DeleteModal({ id, clear, setOpenModal }: ModalProp) {
                     <button onClick={async (e) => {
                         e.stopPropagation()
                         e.preventDefault()
-                        api.deleteSongs(id)
-                            .then(() => {
-                                clear()
-                                dispatch(removeSong({ id }))
-                            }).catch((err) => {
-                                console.log(err)
-                            })
+                        clear()
+                        dispatch(removeSongFetch({ id }))
                         setOpenModal(false)
                     }}
                         className={

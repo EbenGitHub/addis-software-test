@@ -22,7 +22,6 @@ Chartjs.register(
 
 function ChartGraphDisplay() {
     const stats = useSelector((state: StateType) => state.stats.data)
-    console.log({ stats })
     return (
         <div
             style={{

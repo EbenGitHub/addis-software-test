@@ -52,7 +52,9 @@ class SongService {
         if (!song) {
             throw new Error("song not found")
         }
-        return await Song.findByIdAndUpdate(id, { ...data, updatedAt: new Date() })
+        await Song.findByIdAndUpdate(id, { ...data, updatedAt: new Date() })
+        const updatedSong = await Song.findById(id)
+        return updatedSong
     }
 
     async delete(id: string) {

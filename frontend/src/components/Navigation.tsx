@@ -26,7 +26,6 @@ function Navigation({ changePage, currentPage, setFilter, setFilterBy }: NavProp
     function applyFilter(text: string) {
         setFilter(text)
         setFilterBy(searchBy)
-        console.log({ text, searchBy })
     }
 
     const debounceFn = useCallback(_debounce(applyFilter, 1000), [searchBy]);

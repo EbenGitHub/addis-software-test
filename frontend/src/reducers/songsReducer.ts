@@ -26,25 +26,77 @@ export const songSlice = createSlice({
             state.isError = true
             state.isSuccess = false
         },
-        updateSong: (state, action) => {
+        updateSongFetch: (state, _action) => {
+            state.isLoading = true
+            state.isSuccess = false
+            state.isError = false
+        },
+        updateSongSuccess: (state, action) => {
             state.data = state.data.map(song => {
                 if (song.id === action.payload.id) return action.payload
                 return song
             })
+            state.isLoading = false
+            state.isSuccess = true
+            state.isError = false
         },
-        addSong: (state, action) => {
+        updateSongFailure: (state) => {
+            state.isLoading = false
+            state.isSuccess = false
+            state.isError = true
+        },
+        addSongFetch: (state, _action) => {
+            state.isLoading = true
+            state.isSuccess = false
+            state.isError = false
+        },
+        addSongSuccess: (state, action) => {
             state.data = state.data.concat(action.payload)
+            state.isLoading = false
+            state.isSuccess = true
+            state.isError = false
         },
-        removeSong: (state, action) => {
+        addSongFailure: (state) => {
+            state.isLoading = false
+            state.isSuccess = false
+            state.isError = true
+        },
+        removeSongFetch: (state, _action) => {
+            state.isLoading = true
+            state.isSuccess = false
+            state.isError = false
+        },
+        removeSongSuccess: (state, action) => {
             state.data = state.data.filter(song => {
-                return (song.id !== action.payload.id)
+                return (song.id !== action.payload)
             })
+            state.isLoading = false
+            state.isSuccess = true
+            state.isError = false
         },
-        filterSongs: (state, action) => {
+        removeSongFailure: (state) => {
+            state.isLoading = false
+            state.isSuccess = false
+            state.isError = true
+        },
+        filterSongsFetch: (state, _action) => {
+            state.isLoading = true
+            state.isSuccess = false
+            state.isError = false
+        },
+        filterSongsSuccess: (state, action) => {
             state.data = action.payload
+            state.isLoading = false
+            state.isSuccess = true
+            state.isError = false
+        },
+        filterSongsFailure: (state) => {
+            state.isLoading = false
+            state.isSuccess = false
+            state.isError = true
         }
     }
 })
 
-export const { getSongsFetch, getSongsSuccess, getSongsFailure, addSong, removeSong, updateSong, filterSongs } = songSlice.actions
+export const { getSongsFetch, getSongsSuccess, getSongsFailure, addSongFetch, addSongFailure, addSongSuccess, removeSongFetch, removeSongFailure, removeSongSuccess, updateSongFetch, filterSongsFetch, filterSongsFailure, filterSongsSuccess, updateSongSuccess, updateSongFailure } = songSlice.actions
 export default songSlice.reducer

@@ -2,12 +2,11 @@ import Navigation from './components/Navigation'
 import MusicDisplay from './components/MusicDisplay'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { filterSongs, getSongsFetch } from './reducers/songsReducer'
+import { filterSongsFetch, getSongsFetch } from './reducers/songsReducer'
 import { getStatsFetch } from './reducers/statsReducer'
 import ChartGraphDisplay from './components/ChartGraphDisplay'
 import Modal from './components/Modal'
 import { Song } from './types/song.type'
-import Api from './api/api.service'
 import DeleteModal from './components/DeleteModal'
 import ErrorMessage from './components/ErrorMessage'
 
@@ -21,8 +20,6 @@ function App() {
   const [modalMode, setModalMode] = useState<'edit' | 'create'>('create')
   const [filter, setFilter] = useState<string>('')
   const [filterBy, setFilterBy] = useState<'genre' | 'artist' | 'album' | 'title'>('genre')
-
-  const api = new Api()
 
   const newSongTemplate = {
     album: '',
@@ -40,10 +37,7 @@ function App() {
   }, [dispatch])
 
   useEffect(() => {
-    api.filterSongs(filter, filterBy)
-      .then(res => {
-        dispatch(filterSongs(res.data))
-      })
+    dispatch(filterSongsFetch({ filter, filterBy }))
   }, [filter, filterBy])
 
   function clearModalContent() {
