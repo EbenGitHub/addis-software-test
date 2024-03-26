@@ -1,5 +1,3 @@
 import { createSongDto } from "./create-song.dto";
 
-export type updateSongDto = createSongDto & {
-    id: string;
-};
+export type updateSongDto = Partial<createSongDto>
